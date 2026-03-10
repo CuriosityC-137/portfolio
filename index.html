@@ -4,109 +4,127 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Will W. — Design Engineer & CAD Technician</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0a;
-    --bg-card: #111113;
-    --bg-card-hover: #19191d;
-    --text: #e8e6e3;
-    --text-muted: #8a8a8a;
-    --accent: #c9ff57;
-    --accent-dim: rgba(201,255,87,0.12);
-    --border: #222226;
-    --serif: 'Instrument Serif', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-    --radius: 6px;
+    --bg: #f5f0eb;
+    --bg-warm: #efe9e1;
+    --bg-card: #ffffff;
+    --bg-card-hover: #faf8f5;
+    --text: #1e2a3a;
+    --text-muted: #5e6d7a;
+    --text-light: #8a95a0;
+    --accent: #b0704e;
+    --accent-hover: #9a6043;
+    --accent-dim: rgba(176,112,78,0.1);
+    --border: #ddd5cb;
+    --border-light: #e8e2da;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Outfit', system-ui, sans-serif;
+    --radius: 8px;
     --max-w: 1100px;
+    --shadow-sm: 0 1px 3px rgba(30,42,58,0.06);
+    --shadow-md: 0 4px 16px rgba(30,42,58,0.08);
+    --shadow-lg: 0 12px 40px rgba(30,42,58,0.1);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
-  ::selection { background: var(--accent); color: var(--bg); }
-  a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
-  a:hover { opacity: .8; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-  .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo { font-family: var(--serif); font-size: 1.25rem; color: var(--text); letter-spacing: -0.02em; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: var(--accent); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--accent-hover); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,240,235,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); }
+  .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
   .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a { color: var(--text-muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color .2s; }
-  .nav-links a:hover { color: var(--accent); opacity: 1; }
-  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 32px 80px; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; z-index: 0; background-image: url('images/hero-bg.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.2; }
-  .hero-bg-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(135deg, rgba(10,10,10,0.95) 40%, rgba(10,10,10,0.6) 100%); }
-  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,255,87,0.06) 0%, transparent 70%); pointer-events: none; z-index: 2; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--text-muted); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 32px 80px; position: relative; overflow: hidden; background: var(--bg-warm); }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; background-image: url('hero-bg.jpg'); background-size: cover; background-position: center; opacity: 0.08; }
+  .hero-bg-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(160deg, rgba(245,240,235,0.97) 50%, rgba(239,233,225,0.85) 100%); }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--border-light); z-index: 2; }
   .hero-inner { max-width: var(--max-w); margin: 0 auto; width: 100%; position: relative; z-index: 3; }
-  .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; opacity: 0; animation: fadeUp .8s ease forwards; }
-  .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-  .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 400; max-width: 800px; opacity: 0; animation: fadeUp .8s ease .15s forwards; }
-  .hero h1 em { font-style: italic; color: var(--accent); }
-  .hero-desc { max-width: 560px; margin-top: 28px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; opacity: 0; animation: fadeUp .8s ease .3s forwards; }
-  .hero-cta { display: flex; gap: 16px; margin-top: 40px; opacity: 0; animation: fadeUp .8s ease .45s forwards; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer; transition: all .25s; font-family: var(--sans); }
-  .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-  .btn-primary:hover { background: #b8ee45; border-color: #b8ee45; color: var(--bg); opacity: 1; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; opacity: 0; animation: fadeUp .8s ease forwards; }
+  .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -0.025em; font-weight: 300; max-width: 750px; color: var(--text); opacity: 0; animation: fadeUp .8s ease .15s forwards; }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .hero-desc { max-width: 540px; margin-top: 24px; color: var(--text-muted); font-size: 1.02rem; line-height: 1.75; font-weight: 300; opacity: 0; animation: fadeUp .8s ease .3s forwards; }
+  .hero-cta { display: flex; gap: 14px; margin-top: 36px; opacity: 0; animation: fadeUp .8s ease .45s forwards; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); border: 1px solid var(--border); cursor: pointer; transition: all .25s; font-family: var(--sans); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 2px 8px rgba(176,112,78,0.2); }
+  .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; box-shadow: 0 4px 12px rgba(176,112,78,0.3); }
   .btn-outline { background: transparent; color: var(--text); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
   section { padding: 100px 32px; max-width: var(--max-w); margin: 0 auto; }
-  .section-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em; font-weight: 400; margin-bottom: 16px; }
-  .section-desc { color: var(--text-muted); max-width: 520px; margin-bottom: 48px; }
+  .section-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .section-label::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+  .section-title { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.02em; font-weight: 300; color: var(--text); margin-bottom: 12px; }
+  .section-desc { color: var(--text-muted); max-width: 500px; margin-bottom: 48px; font-weight: 300; line-height: 1.7; }
   .divider { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
-  .divider hr { border: none; border-top: 1px solid var(--border); }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-  .skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all .3s; position: relative; overflow: hidden; }
-  .skill-card:hover { border-color: rgba(201,255,87,0.3); background: var(--bg-card-hover); transform: translateY(-2px); }
-  .skill-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity .3s; }
-  .skill-card:hover::after { opacity: 1; }
-  .skill-icon { width: 40px; height: 40px; background: var(--accent-dim); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.1rem; }
-  .skill-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
-  .skill-card p { color: var(--text-muted); font-size: 0.9rem; }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-  .skill-tag { font-size: 0.72rem; font-weight: 500; padding: 4px 10px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); letter-spacing: 0.02em; }
+  .divider hr { border: none; border-top: 1px solid var(--border-light); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .skill-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 28px; transition: all .3s; box-shadow: var(--shadow-sm); }
+  .skill-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--border); }
+  .skill-icon { width: 42px; height: 42px; background: var(--accent-dim); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.1rem; }
+  .skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+  .skill-card p { color: var(--text-muted); font-size: 0.88rem; font-weight: 300; line-height: 1.6; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .skill-tag { font-size: 0.7rem; font-weight: 500; padding: 4px 10px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); letter-spacing: 0.02em; }
+
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
-  .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all .35s; cursor: default; }
-  .project-card:hover { border-color: rgba(201,255,87,0.25); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
-  .project-thumb { width: 100%; height: 220px; position: relative; overflow: hidden; background: linear-gradient(135deg, #1a1a20, #0f0f14); border-bottom: 1px solid var(--border); }
-  .project-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform .4s ease; }
-  .project-card:hover .project-thumb img { transform: scale(1.04); }
-  .project-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,19,0.4) 0%, transparent 50%); pointer-events: none; }
-  .project-thumb .placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
-  .project-thumb .placeholder span { font-size: 2rem; opacity: 0.4; }
+  .project-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); overflow: hidden; transition: all .35s; box-shadow: var(--shadow-sm); display: block; color: inherit; text-decoration: none; }
+  .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--border); color: inherit; }
+  .project-thumb { width: 100%; height: 220px; position: relative; overflow: hidden; background: var(--bg-warm); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; }
+  .project-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; padding: 12px; transition: transform .4s ease; }
+  .project-card:hover .project-thumb img { transform: scale(1.03); }
+  .project-thumb .placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text-light); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .project-thumb .placeholder span { font-size: 2rem; opacity: 0.35; }
   .project-body { padding: 24px; }
-  .project-body h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
-  .project-body p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 16px; }
+  .project-body h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+  .project-body p { color: var(--text-muted); font-size: 0.86rem; line-height: 1.65; margin-bottom: 16px; font-weight: 300; }
+  .project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 500; color: var(--accent); letter-spacing: 0.03em; text-transform: uppercase; margin-top: 4px; }
+
   .timeline { position: relative; padding-left: 32px; }
   .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
   .timeline-item { position: relative; padding-bottom: 40px; }
   .timeline-item:last-child { padding-bottom: 0; }
   .timeline-item::before { content: ''; position: absolute; left: -36px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg); }
-  .timeline-role { font-size: 1.15rem; font-weight: 600; margin-bottom: 4px; }
-  .timeline-company { color: var(--accent); font-size: 0.9rem; font-weight: 500; margin-bottom: 8px; }
-  .timeline-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; max-width: 560px; }
+  .timeline-role { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+  .timeline-company { color: var(--accent); font-size: 0.88rem; font-weight: 500; margin-bottom: 8px; }
+  .timeline-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; max-width: 560px; font-weight: 300; }
+
   .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .contact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; text-align: center; transition: all .3s; }
-  .contact-card:hover { border-color: rgba(201,255,87,0.3); transform: translateY(-2px); }
-  .contact-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
-  .contact-card p { color: var(--text-muted); font-size: 0.88rem; }
-  .contact-card a { display: inline-block; margin-top: 12px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
-  footer { border-top: 1px solid var(--border); text-align: center; padding: 40px 32px; color: var(--text-muted); font-size: 0.82rem; }
+  .contact-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 28px; text-align: center; transition: all .3s; box-shadow: var(--shadow-sm); }
+  .contact-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .contact-card h3 { font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+  .contact-card p { color: var(--text-muted); font-size: 0.86rem; font-weight: 300; }
+  .contact-card a { display: inline-block; margin-top: 12px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  footer { border-top: 1px solid var(--border-light); text-align: center; padding: 40px 32px; color: var(--text-light); font-size: 0.8rem; font-weight: 300; }
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
-  @media (max-width: 768px) { .nav-links { display: none; } section { padding: 64px 20px; } .hero { padding: 100px 20px 60px; min-height: auto; } .hero h1 { font-size: 2.5rem; } .projects-grid { grid-template-columns: 1fr; } .skills-grid { grid-template-columns: 1fr; } .hero-cta { flex-direction: column; } .btn { justify-content: center; } }
+
+  @media (max-width: 768px) { .nav-links { display: none; } section { padding: 64px 20px; } .hero { padding: 100px 20px 60px; min-height: auto; } .hero h1 { font-size: 2.2rem; } .projects-grid { grid-template-columns: 1fr; } .skills-grid { grid-template-columns: 1fr; } .hero-cta { flex-direction: column; } .btn { justify-content: center; } }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
   .hamburger span { width: 22px; height: 2px; background: var(--text); transition: .3s; }
   @media (max-width: 768px) { .hamburger { display: flex; } }
 </style>
 </head>
 <body>
+
 <nav><div class="nav-inner"><div class="nav-logo">Will<span>.</span> W.</div><div class="nav-links"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div><button class="hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'"><span></span><span></span><span></span></button></div></nav>
+
 <header class="hero" id="about"><div class="hero-bg"></div><div class="hero-bg-overlay"></div><div class="hero-inner"><div class="hero-tag">Design Engineer &amp; CAD Technician</div><h1>Precision in <em>design,</em> innovation in <em>engineering.</em></h1><p class="hero-desc">Versatile professional with a strong foundation in physics and extensive hands-on experience in CAD design, rapid prototyping, safety management, and technical problem-solving. I translate complex requirements into practical, innovative solutions.</p><div class="hero-cta"><a href="#projects" class="btn btn-primary">View Projects ↓</a><a href="#contact" class="btn btn-outline">Get in Touch</a></div></div></header>
+
 <div class="divider"><hr></div>
+
 <section id="skills"><div class="fade-in"><div class="section-label">Technical Expertise</div><h2 class="section-title">Skills &amp; Tools</h2><p class="section-desc">25+ years of pyrotechnics experience combined with modern CAD and prototyping capabilities.</p></div>
 <div class="skills-grid">
 <div class="skill-card fade-in"><div class="skill-icon">✏️</div><h3>CAD &amp; 3D Modeling</h3><p>Parametric modeling, assemblies, technical drawings, and rapid iteration from concept to production-ready files.</p><div class="skill-tags"><span class="skill-tag">Fusion 360</span><span class="skill-tag">SketchUp</span><span class="skill-tag">GD&amp;T</span><span class="skill-tag">3D Printing</span></div></div>
@@ -114,31 +132,47 @@
 <div class="skill-card fade-in"><div class="skill-icon">💻</div><h3>Programming</h3><p>Embedded systems, data processing, and web technologies for engineering applications and automation.</p><div class="skill-tags"><span class="skill-tag">C / C++</span><span class="skill-tag">SQL</span><span class="skill-tag">HTML / CSS</span><span class="skill-tag">Arduino</span></div></div>
 <div class="skill-card fade-in"><div class="skill-icon">🤝</div><h3>Collaboration &amp; Project Management</h3><p>Cross-functional coordination, safety compliance, permitting workflows, and technical documentation.</p><div class="skill-tags"><span class="skill-tag">SharePoint</span><span class="skill-tag">OneNote</span><span class="skill-tag">Microsoft Suite</span></div></div>
 </div></section>
+
 <div class="divider"><hr></div>
-<!-- PROJECTS SECTION - HOW TO ADD: 1. Create images/ folder 2. Drop photos in 3. Change src 4. Copy template below to add new projects -->
+
+<!-- PROJECTS — Each card is an <a> linking to a detail page. Create project-*.html files for each. -->
 <section id="projects"><div class="fade-in"><div class="section-label">Selected Work</div><h2 class="section-title">Projects</h2><p class="section-desc">A selection of engineering, design, and prototyping projects showcasing problem-solving across disciplines.</p></div>
 <div class="projects-grid">
-<div class="project-card fade-in"><div class="project-thumb"><img src="3DCadFireworksLight.png" alt="CAD Portfolio" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>📐</span>Add image</div></div><div class="project-body"><h3>CAD Portfolio</h3><p>Collection of technical drawings, parametric models, and assemblies created in Fusion 360 — demonstrating proficiency in dimensioning, tolerancing, and design for manufacturing.</p><div class="skill-tags"><span class="skill-tag">Fusion 360</span><span class="skill-tag">CAD</span><span class="skill-tag">Technical Drawing</span></div></div></div>
-<div class="project-card fade-in"><div class="project-thumb"><img src="DMXLight-Custom.jpg" alt="Wireless LED Light DMX system" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>💡</span>Add image</div></div><div class="project-body"><h3>Wireless LED Light DMX — Design &amp; Build</h3><p>Designed and built a wireless DMX lighting system for floating pyromusical barge shows. Combined CAD modeling in Fusion 360 with electronics design and rapid prototyping.</p><div class="skill-tags"><span class="skill-tag">Fusion 360</span><span class="skill-tag">CAD</span><span class="skill-tag">Electronics</span><span class="skill-tag">Rapid Prototyping</span></div></div></div>
-<div class="project-card fade-in"><div class="project-thumb"><img src="/Fin (1).jpg" alt="Paddle board fin CAD model" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🏄</span>Add image</div></div><div class="project-body"><h3>Paddle Board Fin — Reverse Engineering</h3><p>Reverse-engineered a discontinued paddle board fin using micrometer measurements on a digital paper tablet, then translated data into a 3D-printable CAD model in Fusion 360.</p><div class="skill-tags"><span class="skill-tag">Reverse Engineering</span><span class="skill-tag">GD&amp;T</span><span class="skill-tag">Fusion 360</span><span class="skill-tag">CAD</span></div></div></div>
-<!-- PROJECT 4: FFT LED Music Analyzer --><div class="project-card fade-in"><div class="project-thumb"><img src="images/fft-analyzer.jpg" alt="FFT LED Music Analyzer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🎵</span>Add image</div></div><div class="project-body"><h3>FFT LED Music Analyzer</h3><p>Built a real-time audio spectrum analyzer using Fast Fourier Transforms with Arduino-based PLC to drive an LED display — combining signal processing with embedded programming.</p><div class="skill-tags"><span class="skill-tag">PLC</span><span class="skill-tag">Arduino</span><span class="skill-tag">Programming</span></div></div></div>
-<!-- PROJECT 5: Yamaha 150 Outboard --><div class="project-card fade-in"><div class="project-thumb"><img src="images/yamaha-outboard.jpg" alt="Yamaha 150 Outboard rebuild" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>⚙️</span>Add image</div></div><div class="project-body"><h3>Yamaha 150 Outboard 2-Stroke</h3><p>Complete mechanical teardown, diagnosis, and rebuild of a Yamaha 150 outboard engine — involving welding, tap-and-die work, and hands-on fabrication.</p><div class="skill-tags"><span class="skill-tag">Mechanical</span><span class="skill-tag">Welding</span><span class="skill-tag">Tap &amp; Die</span><span class="skill-tag">Engine</span></div></div></div>
-<!-- PROJECT 6: Professional Pyrotechnics --><div class="project-card fade-in"><div class="project-thumb"><img src="images/fireworks.jpg" alt="Professional pyrotechnics display" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🎆</span>Add image</div></div><div class="project-body"><h3>Fireworks — Professional Pyrotechnics</h3><p>Over 25 years orchestrating professional pyrotechnic displays. Encompassing safety compliance, permitting, DMX lighting scripting, and show design for large-scale events.</p><div class="skill-tags"><span class="skill-tag">Safety</span><span class="skill-tag">Compliance</span><span class="skill-tag">DMX Lighting</span><span class="skill-tag">Scripting</span></div></div></div>
-<!-- PROJECT 7: Research MOKE --><div class="project-card fade-in"><div class="project-thumb"><img src="images/moke-research.jpg" alt="MOKE research" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🔬</span>Add image</div></div><div class="project-body"><h3>Research — MOKE</h3><p>Physics research involving the Magneto-Optic Kerr Effect — studying the magnetic properties of materials through optical techniques.</p><div class="skill-tags"><span class="skill-tag">Research</span><span class="skill-tag">Physics</span></div></div></div>
-<!-- COPY-PASTE TEMPLATE: To add a new project, copy the block below, paste above this comment, fill in your details -->
-<!-- <div class="project-card fade-in"><div class="project-thumb"><img src="images/YOUR-IMAGE.jpg" alt="YOUR-ALT-TEXT" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🔧</span>Add image</div></div><div class="project-body"><h3>YOUR-PROJECT-TITLE</h3><p>YOUR-DESCRIPTION</p><div class="skill-tags"><span class="skill-tag">YOUR-SKILL</span><span class="skill-tag">YOUR-SKILL</span></div></div></div> -->
+
+<a href="project-cad.html" class="project-card fade-in"><div class="project-thumb"><img src="3DCadFireworksLight.png" alt="CAD Portfolio" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>📐</span>Add image</div></div><div class="project-body"><h3>CAD Portfolio</h3><p>Collection of technical drawings, parametric models, and assemblies created in Fusion 360 — demonstrating proficiency in dimensioning, tolerancing, and design for manufacturing.</p><div class="skill-tags"><span class="skill-tag">Fusion 360</span><span class="skill-tag">CAD</span><span class="skill-tag">Technical Drawing</span></div><div class="project-link">View Project →</div></div></a>
+
+<a href="project-dmx.html" class="project-card fade-in"><div class="project-thumb"><img src="DMXLight-Custom.jpg" alt="Wireless LED Light DMX system" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>💡</span>Add image</div></div><div class="project-body"><h3>Wireless LED Light DMX — Design &amp; Build</h3><p>Designed and built a wireless DMX lighting system for floating pyromusical barge shows. Combined CAD modeling in Fusion 360 with electronics design and rapid prototyping.</p><div class="skill-tags"><span class="skill-tag">Fusion 360</span><span class="skill-tag">CAD</span><span class="skill-tag">Electronics</span><span class="skill-tag">Rapid Prototyping</span></div><div class="project-link">View Project →</div></div></a>
+
+<a href="project-fin.html" class="project-card fade-in"><div class="project-thumb"><img src="fin-paddleboard.jpg" alt="Paddle board fin CAD model" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🏄</span>Add image</div></div><div class="project-body"><h3>Paddle Board Fin — Reverse Engineering</h3><p>Reverse-engineered a discontinued paddle board fin using micrometer measurements on a digital paper tablet, then translated data into a 3D-printable CAD model in Fusion 360.</p><div class="skill-tags"><span class="skill-tag">Reverse Engineering</span><span class="skill-tag">GD&amp;T</span><span class="skill-tag">Fusion 360</span><span class="skill-tag">CAD</span></div><div class="project-link">View Project →</div></div></a>
+
+<a href="project-fft.html" class="project-card fade-in"><div class="project-thumb"><img src="fft-analyzer.jpg" alt="FFT LED Music Analyzer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🎵</span>Add image</div></div><div class="project-body"><h3>FFT LED Music Analyzer</h3><p>Built a real-time audio spectrum analyzer using Fast Fourier Transforms with Arduino-based PLC to drive an LED display — combining signal processing with embedded programming.</p><div class="skill-tags"><span class="skill-tag">PLC</span><span class="skill-tag">Arduino</span><span class="skill-tag">Programming</span></div><div class="project-link">View Project →</div></div></a>
+
+<a href="project-yamaha.html" class="project-card fade-in"><div class="project-thumb"><img src="yamaha-outboard.jpg" alt="Yamaha 150 Outboard rebuild" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>⚙️</span>Add image</div></div><div class="project-body"><h3>Yamaha 150 Outboard 2-Stroke</h3><p>Complete mechanical teardown, diagnosis, and rebuild of a Yamaha 150 outboard engine — involving welding, tap-and-die work, and hands-on fabrication.</p><div class="skill-tags"><span class="skill-tag">Mechanical</span><span class="skill-tag">Welding</span><span class="skill-tag">Tap &amp; Die</span><span class="skill-tag">Engine</span></div><div class="project-link">View Project →</div></div></a>
+
+<a href="project-fireworks.html" class="project-card fade-in"><div class="project-thumb"><img src="fireworks.jpg" alt="Professional pyrotechnics display" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🎆</span>Add image</div></div><div class="project-body"><h3>Fireworks — Professional Pyrotechnics</h3><p>Over 25 years orchestrating professional pyrotechnic displays. Encompassing safety compliance, permitting, DMX lighting scripting, and show design for large-scale events.</p><div class="skill-tags"><span class="skill-tag">Safety</span><span class="skill-tag">Compliance</span><span class="skill-tag">DMX Lighting</span><span class="skill-tag">Scripting</span></div><div class="project-link">View Project →</div></div></a>
+
+<a href="project-moke.html" class="project-card fade-in"><div class="project-thumb"><img src="moke-research.jpg" alt="MOKE research" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🔬</span>Add image</div></div><div class="project-body"><h3>Research — MOKE</h3><p>Physics research involving the Magneto-Optic Kerr Effect — studying the magnetic properties of materials through optical techniques.</p><div class="skill-tags"><span class="skill-tag">Research</span><span class="skill-tag">Physics</span></div><div class="project-link">View Project →</div></div></a>
+
+<!-- TEMPLATE: Copy, paste above, fill in. <a href="project-NEW.html" class="project-card fade-in"><div class="project-thumb"><img src="YOUR-IMAGE.jpg" alt="ALT" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;"><span>🔧</span>Add image</div></div><div class="project-body"><h3>TITLE</h3><p>DESCRIPTION</p><div class="skill-tags"><span class="skill-tag">Skill</span></div><div class="project-link">View Project →</div></div></a> -->
+
 </div></section>
+
 <div class="divider"><hr></div>
+
 <section id="experience"><div class="fade-in"><div class="section-label">Background</div><h2 class="section-title">Experience &amp; Education</h2></div>
 <div class="timeline fade-in"><div class="timeline-item"><div class="timeline-role">Lead Pyrotechnician</div><div class="timeline-company">Fireworks — Professional Pyrotechnics</div><div class="timeline-desc">Lead role in designing and executing professional pyrotechnic displays. Managed safety compliance, permitting, team coordination, DMX lighting integration, and show scripting for large-scale floating barge events. Over 25 years of experience in the field.</div></div>
 <div class="timeline-item"><div class="timeline-role">Physics &amp; Engineering Background</div><div class="timeline-company">Education</div><div class="timeline-desc">Strong foundation in physics with applied experience in CAD design, 3D printing technologies, reverse engineering, and prototype development. Continually expanding expertise through hands-on engineering projects.</div></div></div></section>
+
 <div class="divider"><hr></div>
+
 <section id="contact"><div class="fade-in"><div class="section-label">Get in Touch</div><h2 class="section-title">Let's connect</h2><p class="section-desc">Looking for opportunities in design engineering and CAD drafting. Open to full-time roles, contract work, and collaboration.</p></div>
 <div class="contact-grid fade-in"><div class="contact-card"><h3>Email</h3><p>E-Mail Me</p><a href="mailto:wendtwill@gmail.com">Send Email →</a></div><div class="contact-card"><h3>LinkedIn</h3><p>Professional profile</p><a href="https://linkedin.com" target="_blank">View Profile →</a></div><div class="contact-card"><h3>Location</h3><p>Florida, United States</p></div></div></section>
+
 <footer><p>&copy; 2026 Will W. — Design Engineer &amp; CAD Technician</p></footer>
+
 <script>
-  const observer = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+const observer = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
