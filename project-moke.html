@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — MOKE — Will W.</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0eb; --bg-warm: #efe9e1; --bg-card: #ffffff;
+    --text: #1e2a3a; --text-muted: #5e6d7a; --text-light: #8a95a0;
+    --accent: #b0704e; --accent-hover: #9a6043; --accent-dim: rgba(176,112,78,0.1);
+    --border: #ddd5cb; --border-light: #e8e2da;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Outfit', system-ui, sans-serif;
+    --radius: 8px; --max-w: 860px;
+    --shadow-sm: 0 1px 3px rgba(30,42,58,0.06);
+    --shadow-md: 0 4px 16px rgba(30,42,58,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: var(--accent); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--accent-hover); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,240,235,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .back-link { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+  .back-link:hover { color: var(--accent); }
+
+  .project-hero { padding: 120px 32px 60px; background: var(--bg-warm); border-bottom: 1px solid var(--border-light); }
+  .project-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+  .tag { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .tag::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+  .project-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .project-hero .subtitle { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; line-height: 1.75; max-width: 680px; margin-bottom: 20px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-tag { font-size: 0.72rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); }
+
+  .project-content { max-width: var(--max-w); margin: 0 auto; padding: 60px 32px 100px; }
+  .project-image { width: 100%; border-radius: var(--radius); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); margin: 32px 0; }
+
+  .chapter { display: flex; align-items: center; gap: 14px; margin: 56px 0 20px; font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+  .chapter:first-of-type { margin-top: 0; }
+  .chapter-num { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-dim); color: var(--accent); font-family: var(--sans); font-size: 0.82rem; font-weight: 600; flex-shrink: 0; }
+
+  .project-content p { color: var(--text-muted); font-weight: 300; line-height: 1.85; margin-bottom: 20px; max-width: 720px; }
+  .project-content p strong { color: var(--text); font-weight: 500; }
+  .project-content ul { color: var(--text-muted); font-weight: 300; margin: 0 0 24px 24px; line-height: 1.85; }
+  .project-content li { margin-bottom: 6px; }
+  .project-content h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; margin: 48px 0 16px; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+
+  .callout { background: var(--bg-card); border: 1px solid var(--border-light); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 24px 28px; margin: 28px 0; box-shadow: var(--shadow-sm); }
+  .callout p { margin-bottom: 0; }
+
+  .lesson-box { background: var(--accent-dim); border: 1px solid rgba(176,112,78,0.15); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
+  .lesson-box .lesson-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .lesson-box p { color: var(--text); font-weight: 400; font-size: 0.92rem; margin-bottom: 0; line-height: 1.7; }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 32px 0; }
+  .gallery img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+
+  /* Component list for the optical setup */
+  .component-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px; margin: 24px 0;
+  }
+  .component {
+    background: var(--bg-card); border: 1px solid var(--border-light);
+    border-radius: var(--radius); padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .component h4 { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .component p { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; line-height: 1.5; margin-bottom: 0; }
+
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); border: 1px solid var(--border); color: var(--text); background: transparent; margin-top: 48px; transition: all .25s; }
+  .back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border-light); text-align: center; padding: 40px 32px; color: var(--text-light); font-size: 0.8rem; font-weight: 300; }
+
+  @media (max-width: 768px) { .project-hero { padding: 100px 20px 40px; } .project-content { padding: 40px 20px 60px; } .gallery { grid-template-columns: 1fr; } .component-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner"><a href="index.html" class="nav-logo">Will<span>.</span> W.</a><a href="index.html#projects" class="back-link">← Back to Projects</a></div></nav>
+
+<div class="project-hero">
+  <div class="project-hero-inner">
+    <div class="tag">University Research</div>
+    <h1>Spin Torque Transfer — Magneto-Optic Kerr Effect</h1>
+    <p class="subtitle">Physics research at the University of South Florida studying the magnetic properties of materials through ultrafast laser spectroscopy and the magneto-optic Kerr effect.</p>
+    <div class="meta">
+      <span class="meta-tag">Physics</span>
+      <span class="meta-tag">Research</span>
+      <span class="meta-tag">Optics</span>
+      <span class="meta-tag">Spectroscopy</span>
+      <span class="meta-tag">Interferometry</span>
+      <span class="meta-tag">USF</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-content">
+
+  <!-- ▼ Hero image — use your schematic or lab photo ▼ -->
+  <img class="project-image" src="moke-schematic.jpg" alt="Spin Torque Transfer MOKE optical setup schematic" onerror="this.style.display='none';">
+
+  <!-- ================================================
+       CHAPTER 1: THE SCIENCE
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">01</span> The Science</div>
+
+  <p>The Magneto-Optic Kerr Effect (MOKE) describes how polarized light changes when it reflects off a magnetized surface. The rotation and ellipticity of the reflected light tell you about the magnetic state of the material — its magnetization direction, strength, and how it responds to external fields.</p>
+
+  <p><strong>Spin Torque Transfer</strong> is the mechanism by which a spin-polarized electrical current can flip the magnetization of a thin magnetic layer. Understanding this effect is critical for next-generation memory technologies (MRAM) and spintronic devices.</p>
+
+  <div class="callout">
+    <p><strong>The research question:</strong> By combining ultrafast laser pulses with MOKE detection, we could observe how magnetic states change on picosecond timescales — watching magnetization dynamics in real time at speeds that no conventional instrument can capture.</p>
+  </div>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Understanding the physics behind your measurement technique is as important as the measurement itself. MOKE isn't just "shining light on a magnet" — it's exploiting a quantum-mechanical interaction between photons and spin-polarized electrons. The deeper you understand the principle, the better you can troubleshoot when results don't make sense.</p>
+  </div>
+
+  <!-- ================================================
+       CHAPTER 2: THE OPTICAL SETUP
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">02</span> Building the Optical Table</div>
+
+  <p>The experimental setup was a complex optical system built on a vibration-isolated optical table. Every component had to be precisely aligned — we're talking about beam paths where a fraction of a degree of misalignment means no signal at all.</p>
+
+  <p>The technique used was <strong>Time Delay Interferometry and Spectroscopy</strong> — splitting an ultrafast laser pulse into pump and probe beams, introducing a precisely controlled time delay between them, and measuring how the material's magnetic state evolves after being excited.</p>
+
+  <div class="component-grid">
+    <div class="component"><h4>Ultra Fast Laser</h4><p>Femtosecond pulsed laser source — the heart of the system, producing pulses shorter than a trillionth of a second.</p></div>
+    <div class="component"><h4>100mm f Lenses</h4><p>Focusing optics to control beam diameter and intensity at the sample surface.</p></div>
+    <div class="component"><h4>BS 30/70 Beam Splitter</h4><p>Splits the laser into pump (70%) and probe (30%) beams with controlled power ratios.</p></div>
+    <div class="component"><h4>Doubling Crystal</h4><p>Frequency doubling to convert the laser wavelength — allowing probe measurements at a different color than the pump excitation.</p></div>
+    <div class="component"><h4>300mm Linear Translation Stage</h4><p>Precision motorized stage controlling the time delay between pump and probe pulses by varying the optical path length.</p></div>
+    <div class="component"><h4>50-50 Beam Splitter</h4><p>Divides the probe beam for balanced detection — critical for measuring the tiny Kerr rotation signal.</p></div>
+    <div class="component"><h4>Detector</h4><p>Photodetector measuring the polarization-dependent intensity changes caused by the magneto-optic Kerr effect.</p></div>
+    <div class="component"><h4>Microscope Objective</h4><p>High-magnification focusing for micro-scale spatial resolution on the sample surface.</p></div>
+    <div class="component"><h4>DCM 485nm</h4><p>Dichroic mirror at 485nm — separating pump and probe wavelengths to isolate the measurement signal.</p></div>
+    <div class="component"><h4>ZXY Pico Motor Stage</h4><p>Three-axis precision positioning stage for nanometer-scale sample alignment under the focused beam.</p></div>
+  </div>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Optical alignment is an exercise in patience and systematic thinking. You can't just eyeball a beam path — you need reference points, iterative alignment procedures, and the discipline to start from scratch when something drifts. It taught me that precision work requires process, not just skill.</p>
+  </div>
+
+  <!-- ▼ Add your lab setup photos here ▼ -->
+  <div class="gallery">
+    <!-- <img src="moke-table-wide.jpg" alt="Full optical table setup for MOKE experiment"> -->
+    <!-- <img src="moke-table-closeup.jpg" alt="Close-up of optical components on the breadboard"> -->
+  </div>
+
+  <!-- ================================================
+       CHAPTER 3: THE WORK
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">03</span> The Day-to-Day</div>
+
+  <p>Research at this level isn't glamorous. It's hours of alignment, calibration, troubleshooting, and incremental progress. A typical day might involve spending the morning re-aligning the beam path after thermal drift overnight, running a series of measurements in the afternoon, and analyzing data in the evening — only to discover that a vibration source was corrupting your signal the entire time.</p>
+
+  <p>The work required a combination of hands-on optical engineering, electronics (detector amplification, lock-in detection), data acquisition programming, and materials science knowledge. Every measurement was a system-level problem: laser stability, optical alignment, sample preparation, electromagnetic interference, vibration isolation, and data processing all had to work simultaneously.</p>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Complex systems fail at their interfaces. The laser can be perfect, the optics aligned, the detector calibrated — but if the sample mount introduces vibration or the translation stage has backlash, your data is noise. Learning to think in systems, not components, was the most valuable takeaway from this research.</p>
+  </div>
+
+  <!-- ================================================
+       CHAPTER 4: WHAT IT TAUGHT ME
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">04</span> How Research Made Me a Better Engineer</div>
+
+  <p>This research experience at USF fundamentally shaped how I approach engineering problems. The skills transfer directly:</p>
+
+  <ul>
+    <li><strong>Systematic problem solving:</strong> When an experiment doesn't work, you isolate variables one at a time. The same approach applies to diagnosing a mechanical failure or debugging a design.</li>
+    <li><strong>Precision and tolerances:</strong> Working with nanometer-scale positioning and femtosecond timing taught me that tolerances aren't abstract numbers on a drawing — they're the difference between a system that works and one that doesn't.</li>
+    <li><strong>Documentation discipline:</strong> In research, if you didn't write it down, it didn't happen. Lab notebooks, alignment procedures, calibration records — this habit carried directly into engineering documentation.</li>
+    <li><strong>Comfort with complexity:</strong> A MOKE setup has dozens of interacting subsystems. Learning to hold that complexity in your head — and troubleshoot it methodically — is the same skill required for any complex engineering project.</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>The foundation:</strong> A physics research background means I don't just know how to use CAD software — I understand why materials behave the way they do, why thermal expansion matters in an assembly, and why a tolerance stack-up can make or break a design. Theory and practice aren't separate — they're two sides of the same engineering coin.</p>
+  </div>
+
+  <h2>Skills Demonstrated</h2>
+  <ul>
+    <li><strong>Optical system design &amp; alignment:</strong> Building and maintaining complex multi-component laser optical systems</li>
+    <li><strong>Precision instrumentation:</strong> Working with nanometer positioning stages, femtosecond lasers, and sensitive photodetection</li>
+    <li><strong>Data acquisition &amp; analysis:</strong> Collecting, processing, and interpreting experimental data from time-resolved measurements</li>
+    <li><strong>Systematic troubleshooting:</strong> Isolating failure modes across complex, multi-variable experimental systems</li>
+    <li><strong>Technical documentation:</strong> Maintaining lab notebooks, alignment procedures, and experimental protocols</li>
+    <li><strong>Physics fundamentals:</strong> Magnetism, optics, quantum mechanics, and materials science applied to real measurement systems</li>
+  </ul>
+
+  <a href="index.html#projects" class="back-btn">← Back to All Projects</a>
+</div>
+
+<footer><p>&copy; 2026 Will W. — Design Engineer &amp; CAD Technician</p></footer>
+
+</body>
+</html>
