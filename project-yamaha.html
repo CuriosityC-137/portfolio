@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yamaha 150 Outboard 2-Stroke — Will W.</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0eb; --bg-warm: #efe9e1; --bg-card: #ffffff;
+    --text: #1e2a3a; --text-muted: #5e6d7a; --text-light: #8a95a0;
+    --accent: #b0704e; --accent-hover: #9a6043; --accent-dim: rgba(176,112,78,0.1);
+    --border: #ddd5cb; --border-light: #e8e2da;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Outfit', system-ui, sans-serif;
+    --radius: 8px; --max-w: 860px;
+    --shadow-sm: 0 1px 3px rgba(30,42,58,0.06);
+    --shadow-md: 0 4px 16px rgba(30,42,58,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: var(--accent); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--accent-hover); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,240,235,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .back-link { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+  .back-link:hover { color: var(--accent); }
+
+  .project-hero { padding: 120px 32px 60px; background: var(--bg-warm); border-bottom: 1px solid var(--border-light); }
+  .project-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+  .tag { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .tag::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+  .project-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .project-hero .subtitle { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; line-height: 1.75; max-width: 680px; margin-bottom: 20px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-tag { font-size: 0.72rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); }
+
+  .project-content { max-width: var(--max-w); margin: 0 auto; padding: 60px 32px 100px; }
+  .project-image { width: 100%; border-radius: var(--radius); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); margin: 32px 0; }
+
+  .chapter { display: flex; align-items: center; gap: 14px; margin: 56px 0 20px; font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+  .chapter:first-of-type { margin-top: 0; }
+  .chapter-num { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-dim); color: var(--accent); font-family: var(--sans); font-size: 0.82rem; font-weight: 600; flex-shrink: 0; }
+
+  .project-content p { color: var(--text-muted); font-weight: 300; line-height: 1.85; margin-bottom: 20px; max-width: 720px; }
+  .project-content p strong { color: var(--text); font-weight: 500; }
+  .project-content ul { color: var(--text-muted); font-weight: 300; margin: 0 0 24px 24px; line-height: 1.85; }
+  .project-content li { margin-bottom: 6px; }
+  .project-content h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; margin: 48px 0 16px; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+
+  .callout { background: var(--bg-card); border: 1px solid var(--border-light); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 24px 28px; margin: 28px 0; box-shadow: var(--shadow-sm); }
+  .callout p { margin-bottom: 0; }
+
+  .lesson-box { background: var(--accent-dim); border: 1px solid rgba(176,112,78,0.15); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
+  .lesson-box .lesson-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .lesson-box p { color: var(--text); font-weight: 400; font-size: 0.92rem; margin-bottom: 0; line-height: 1.7; }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 32px 0; }
+  .gallery img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); border: 1px solid var(--border); color: var(--text); background: transparent; margin-top: 48px; transition: all .25s; }
+  .back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border-light); text-align: center; padding: 40px 32px; color: var(--text-light); font-size: 0.8rem; font-weight: 300; }
+
+  @media (max-width: 768px) { .project-hero { padding: 100px 20px 40px; } .project-content { padding: 40px 20px 60px; } .gallery { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner"><a href="index.html" class="nav-logo">Will<span>.</span> W.</a><a href="index.html#projects" class="back-link">← Back to Projects</a></div></nav>
+
+<div class="project-hero">
+  <div class="project-hero-inner">
+    <div class="tag">Hands-On Engineering</div>
+    <h1>Yamaha 150 Outboard 2-Stroke</h1>
+    <p class="subtitle">A 1999 Yamaha 150 two-stroke that was overheating. What looked like a simple fix turned into a full teardown, broken exhaust plate bolts, aluminum welding, and a rebuild that taught me more than any classroom could.</p>
+    <div class="meta">
+      <span class="meta-tag">Mechanical</span>
+      <span class="meta-tag">Engine Rebuild</span>
+      <span class="meta-tag">Welding</span>
+      <span class="meta-tag">Tap &amp; Die</span>
+      <span class="meta-tag">Diagnostics</span>
+      <span class="meta-tag">Marine</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-content">
+
+  <!-- ▼ Hero image — replace with your best engine shot ▼ -->
+  <img class="project-image" src="yamaha-hero.jpg" alt="1999 Yamaha 150 Outboard 2-Stroke" onerror="this.style.display='none';">
+
+  <!-- ================================================
+       CHAPTER 1: THE SYMPTOM
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">01</span> The Overheat</div>
+
+  <p>The 1999 Yamaha 150 two-stroke was running hot. Overheating on an outboard is never a small problem — it means cooling water isn't getting where it needs to go, and if you keep running it, you're looking at warped heads, scored cylinders, or worse. Something was blocking the flow.</p>
+
+  <p>Initial checks pointed to the exhaust system. When I started pulling things apart to trace the cooling path, the real problem revealed itself: <strong>the exhaust plate bolts were broken</strong>. Snapped off flush with the block. No amount of penetrating oil was going to unscrew a bolt with no head.</p>
+
+  <div class="callout">
+    <p><strong>The real issue wasn't overheating — that was just the symptom.</strong> The broken exhaust plate bolts had compromised the seal, disrupting the cooling water flow path. To fix it properly meant a full teardown to access the broken bolt locations, extract them, and repair the threads.</p>
+  </div>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Always chase the root cause, not the symptom. An overheating engine can mean a dozen things — thermostat, water pump impeller, blockage, head gasket. Methodical diagnosis before disassembly saves you from tearing apart systems that aren't the problem.</p>
+  </div>
+
+  <!-- ▼ Add your "before" engine photos here ▼ -->
+  <div class="gallery">
+    <!-- <img src="yamaha-before-1.jpg" alt="Engine before teardown — front view"> -->
+    <!-- <img src="yamaha-before-2.jpg" alt="Engine before teardown — side view"> -->
+  </div>
+
+  <!-- ================================================
+       CHAPTER 2: THE TEARDOWN
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">02</span> Tearing It Down</div>
+
+  <p>With broken bolts buried in the block, there was no shortcut. The entire powerhead had to come apart to access the damage. Cowling off, wiring labeled and disconnected, fuel lines pulled, and the powerhead stripped down to the bare block.</p>
+
+  <p>What I found inside told the full story. The water jackets were heavily corroded — years of saltwater exposure had eaten through passages and left deposits that were choking the cooling flow even before the bolts broke. The cylinders showed signs of the overheating, and the exhaust plate mating surface needed attention.</p>
+
+  <p>The broken bolts were the worst part. Snapped flush, corroded in place, and seated in aluminum — which meant extraction required extreme care to avoid cracking the block.</p>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Label and photograph everything during teardown. Marine engines have dozens of wires, hoses, and connections that all look similar once they're disconnected. I took photos at every stage — each one saved me during reassembly. A 5-second photo now saves an hour of head-scratching later.</p>
+  </div>
+
+  <!-- ▼ Add teardown photos — cylinder bores, corrosion, etc. ▼ -->
+  <div class="gallery">
+    <!-- <img src="yamaha-teardown-waterjacket.jpg" alt="Corroded water jackets exposed during teardown"> -->
+    <!-- <img src="yamaha-teardown-cylinders.jpg" alt="Cylinder bores after head removal"> -->
+    <!-- <img src="yamaha-teardown-full.jpg" alt="Full engine teardown on the boat"> -->
+    <!-- <img src="yamaha-teardown-bench.jpg" alt="Powerhead removed and on the workbench"> -->
+  </div>
+
+  <!-- ================================================
+       CHAPTER 3: THE FIX — BOLT EXTRACTION & WELDING
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">03</span> Broken Bolts &amp; Aluminum Welding</div>
+
+  <p>Extracting broken bolts from an aluminum block is one of those jobs that tests your patience and your precision. Drill too aggressively and you crack the casting. Go off-center and you wallow out the hole. Use the wrong extractor and you make it worse.</p>
+
+  <p>Some bolts came out with careful extraction. Others required welding — <strong>this became the perfect opportunity to test my new welder with an aluminum spool gun attachment</strong>. Aluminum welding is a completely different animal than steel. The material conducts heat so fast that you're fighting warpage and burn-through the entire time. The spool gun feeds the soft aluminum wire without the kinking problems you'd get trying to push it through a standard MIG liner.</p>
+
+  <p>With some help from my neighbor — who brought both experience and an extra set of hands — we worked through the bolt extractions and repairs. Some holes needed to be drilled out, re-tapped, and fitted with thread inserts. Others got weld-repaired and re-machined.</p>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Aluminum welding requires a completely different mindset than steel. The heat-affected zone is massive, the material warps fast, and you have to move quickly. A spool gun is non-negotiable for MIG aluminum — trying to push soft aluminum wire through a standard liner is a recipe for bird's nests and frustration. Practice on scrap pieces of similar thickness before touching the actual part.</p>
+  </div>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Don't be too proud to ask for help. My neighbor's experience with bolt extraction saved me from making mistakes that could have cracked the block. Two sets of eyes and two sets of hands make precision work safer and more accurate.</p>
+  </div>
+
+  <!-- ▼ Add welding and extraction photos here ▼ -->
+  <div class="gallery">
+    <!-- <img src="yamaha-welding.jpg" alt="Aluminum welding with spool gun attachment"> -->
+    <!-- <img src="yamaha-neighbor.jpg" alt="Getting help from the neighbor on bolt extraction"> -->
+    <!-- <img src="yamaha-corrosion-detail.jpg" alt="Close-up of corrosion damage"> -->
+  </div>
+
+  <!-- ================================================
+       CHAPTER 4: THE REASSEMBLY
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">04</span> Putting It Back Together</div>
+
+  <p>With every broken bolt extracted, every thread restored, and every corroded passage cleaned, it was time for reassembly. This is where all those photos from the teardown paid off.</p>
+
+  <p>New gaskets and seals throughout. Every bolt torqued to Yamaha service manual specs in the correct sequence. The exhaust plate seated properly for the first time — probably in years — with new bolts and a clean mating surface. Cooling passages were flushed and tested for flow before the powerhead went back together.</p>
+
+  <p>Wiring reconnected. Fuel system purged and primed. Lower unit reconnected. The engine went back on the transom and everything was double-checked before the moment of truth.</p>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Torque sequence matters as much as torque value. On the exhaust plate and head bolts, tightening in the wrong order creates uneven clamping force — and that's exactly how you end up with the same leak you started with. Follow the service manual pattern, not just the numbers.</p>
+  </div>
+
+  <!-- ▼ Add reassembly photos here ▼ -->
+  <div class="gallery">
+    <!-- <img src="yamaha-reassemble-1.jpg" alt="Engine reassembly — powerhead going back together"> -->
+    <!-- <img src="yamaha-reassemble-2.jpg" alt="Engine back on the transom"> -->
+  </div>
+
+  <!-- ================================================
+       CHAPTER 5: THE RESULT
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">05</span> Running Cool</div>
+
+  <p>The engine fired up clean. More importantly — it ran cool. The temperature gauge sat right where it should, steady and stable. The overheating problem was gone because we'd fixed the actual cause: the broken exhaust plate bolts that had compromised the cooling water seal.</p>
+
+  <p>What started as "the engine is running hot" turned into a full mechanical education — diagnostics, teardown, aluminum welding, bolt extraction, thread repair, and a complete reassembly. Every hour in the driveway with grease on my hands taught me something that makes me a better engineer when I sit down at a CAD workstation.</p>
+
+  <!-- ▼ Add "running again" photos here ▼ -->
+  <div class="gallery">
+    <!-- <img src="yamaha-final.jpg" alt="Yamaha 150 reassembled and running"> -->
+  </div>
+
+  <!-- ================================================
+       SKILLS & BIGGER LESSON
+       ================================================ -->
+  <h2>Skills Demonstrated</h2>
+  <ul>
+    <li><strong>Root cause analysis:</strong> Tracing an overheating symptom back to broken exhaust plate bolts and compromised cooling flow</li>
+    <li><strong>Aluminum MIG welding:</strong> Using a spool gun attachment for aluminum repair on engine castings</li>
+    <li><strong>Bolt extraction &amp; tap and die:</strong> Removing broken fasteners from aluminum and restoring threads without damaging the block</li>
+    <li><strong>Marine engine systems:</strong> Understanding the interplay of cooling, exhaust, fuel, and ignition in a two-stroke outboard</li>
+    <li><strong>Service manual discipline:</strong> Following manufacturer torque specs, sequences, and procedures for a reliable rebuild</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>The Bigger Lesson:</strong> When you've held a corroded block in your hands and felt a restored thread catch for the first time, you design differently. You think about what the technician will need to access, how corrosion will attack a joint over 20 years, and why that extra 0.5mm of clearance matters. Hands-on mechanical work makes you a better design engineer — every time.</p>
+  </div>
+
+  <a href="index.html#projects" class="back-btn">← Back to All Projects</a>
+</div>
+
+<footer><p>&copy; 2026 Will W. — Design Engineer &amp; CAD Technician</p></footer>
+
+</body>
+</html>
