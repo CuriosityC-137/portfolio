@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FFT LED Music Analyzer — Will W.</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Outfit:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0eb; --bg-warm: #efe9e1; --bg-card: #ffffff;
+    --text: #1e2a3a; --text-muted: #5e6d7a; --text-light: #8a95a0;
+    --accent: #b0704e; --accent-hover: #9a6043; --accent-dim: rgba(176,112,78,0.1);
+    --border: #ddd5cb; --border-light: #e8e2da;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Outfit', system-ui, sans-serif;
+    --mono: 'Fira Code', monospace;
+    --radius: 8px; --max-w: 860px;
+    --shadow-sm: 0 1px 3px rgba(30,42,58,0.06);
+    --shadow-md: 0 4px 16px rgba(30,42,58,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: var(--accent); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--accent-hover); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,240,235,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .back-link { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+  .back-link:hover { color: var(--accent); }
+
+  .project-hero { padding: 120px 32px 60px; background: var(--bg-warm); border-bottom: 1px solid var(--border-light); }
+  .project-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+  .tag { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .tag::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+  .project-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .project-hero .subtitle { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; line-height: 1.75; max-width: 680px; margin-bottom: 20px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-tag { font-size: 0.72rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); }
+
+  .project-content { max-width: var(--max-w); margin: 0 auto; padding: 60px 32px 100px; }
+  .project-image { width: 100%; border-radius: var(--radius); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); margin: 32px 0; }
+
+  .chapter { display: flex; align-items: center; gap: 14px; margin: 56px 0 20px; font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+  .chapter:first-of-type { margin-top: 0; }
+  .chapter-num { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-dim); color: var(--accent); font-family: var(--sans); font-size: 0.82rem; font-weight: 600; flex-shrink: 0; }
+
+  .project-content p { color: var(--text-muted); font-weight: 300; line-height: 1.85; margin-bottom: 20px; max-width: 720px; }
+  .project-content p strong { color: var(--text); font-weight: 500; }
+  .project-content ul { color: var(--text-muted); font-weight: 300; margin: 0 0 24px 24px; line-height: 1.85; }
+  .project-content li { margin-bottom: 6px; }
+  .project-content h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; margin: 48px 0 16px; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+
+  .callout { background: var(--bg-card); border: 1px solid var(--border-light); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 24px 28px; margin: 28px 0; box-shadow: var(--shadow-sm); }
+  .callout p { margin-bottom: 0; }
+
+  .lesson-box { background: var(--accent-dim); border: 1px solid rgba(176,112,78,0.15); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
+  .lesson-box .lesson-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .lesson-box p { color: var(--text); font-weight: 400; font-size: 0.92rem; margin-bottom: 0; line-height: 1.7; }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 32px 0; }
+  .gallery img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+
+  .img-caption { text-align: center; font-size: 0.82rem; color: var(--text-light); font-weight: 300; margin-top: -20px; margin-bottom: 28px; font-style: italic; }
+
+  /* Code block */
+  .code-block { background: #1e2a3a; border-radius: var(--radius); padding: 24px; margin: 28px 0; overflow-x: auto; box-shadow: var(--shadow-md); }
+  .code-block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .code-block-header span { font-family: var(--mono); font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+  .code-block pre { font-family: var(--mono); font-size: 0.8rem; line-height: 1.6; color: #e8e6e3; white-space: pre-wrap; word-break: break-all; max-height: 400px; overflow-y: auto; }
+  .code-block pre .comment { color: #6a9955; }
+  .code-block pre .keyword { color: #569cd6; }
+
+  /* Signal flow diagram */
+  .signal-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 28px 0; padding: 24px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+  .flow-step { background: var(--accent-dim); border: 1px solid rgba(176,112,78,0.15); border-radius: var(--radius); padding: 12px 16px; text-align: center; }
+  .flow-step h4 { font-size: 0.82rem; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
+  .flow-step p { font-size: 0.72rem; color: var(--text-muted); font-weight: 300; margin-bottom: 0; }
+  .flow-arrow { font-size: 1.2rem; color: var(--accent); font-weight: 300; }
+
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius); border: 1px solid var(--border); color: var(--text); background: transparent; margin-top: 48px; transition: all .25s; }
+  .back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border-light); text-align: center; padding: 40px 32px; color: var(--text-light); font-size: 0.8rem; font-weight: 300; }
+
+  @media (max-width: 768px) { .project-hero { padding: 100px 20px 40px; } .project-content { padding: 40px 20px 60px; } .gallery { grid-template-columns: 1fr; } .signal-flow { flex-direction: column; } .flow-arrow { transform: rotate(90deg); } }
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner"><a href="index.html" class="nav-logo">Will<span>.</span> W.</a><a href="index.html#projects" class="back-link">← Back to Projects</a></div></nav>
+
+<div class="project-hero">
+  <div class="project-hero-inner">
+    <div class="tag">Embedded Programming — Feb 2024 – Mar 2025</div>
+    <h1>Fast Fourier Transforms (FFT) LED Music Analyzer</h1>
+    <p class="subtitle">Using Fast Fourier Transforms and an Arduino to create a real-time music-to-light visualization — decomposing audio into frequency bands and driving an RGB LED display.</p>
+    <div class="meta">
+      <span class="meta-tag">PLC</span>
+      <span class="meta-tag">Arduino</span>
+      <span class="meta-tag">Programming</span>
+      <span class="meta-tag">Signal Processing</span>
+      <span class="meta-tag">FFT</span>
+      <span class="meta-tag">Electronics</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-content">
+
+  <!-- ▼ FFT explanation diagram — replace with your image filename ▼ -->
+  <img class="project-image" src="fft-explanation.jpg" alt="Fast Fourier Transform — frequency and time domain visualization">
+  <p class="img-caption">Fast Fourier Transforms beautifully explained. Credit: Nuwan Kuruwitaarachchi</p>
+
+  <!-- ================================================
+       CHAPTER 1: WHAT IS FFT?
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">01</span> What is a Fast Fourier Transform?</div>
+
+  <p>Every sound you hear is a mixture of frequencies. A bass drum is low frequency, a cymbal is high frequency, and a chord is multiple frequencies at once. Your ear does this separation naturally — but how do you teach an Arduino to do it?</p>
+
+  <p>The <strong>Fast Fourier Transform (FFT)</strong> is the algorithm that makes it possible. It takes a raw audio signal — just a series of voltage readings over time — and decomposes it into its individual frequency components. The result is a spectrum: a list of how much energy is present at each frequency band.</p>
+
+  <div class="callout">
+    <p><strong>The idea:</strong> Sample audio through the Arduino's ADC, run an FFT to split it into frequency bins, group those bins into three color bands (Red = low frequencies, Green = mid frequencies, Blue = high frequencies), and drive 12 LEDs in real time.</p>
+  </div>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Understanding the math behind the algorithm — not just copying code — is what lets you debug problems. When the LED display wasn't responding to bass, it was because I was including the DC component (bin 0) in my calculations. Knowing that bin 0 represents the signal's average value, not a frequency, was something I only understood by studying the FFT theory.</p>
+  </div>
+
+  <!-- ================================================
+       CHAPTER 2: THE SIGNAL FLOW
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">02</span> How It Works</div>
+
+  <p>The entire system runs in a continuous loop, processing audio in real time. Here's the signal flow:</p>
+
+  <div class="signal-flow">
+    <div class="flow-step"><h4>Audio In</h4><p>Analog signal → ADC</p></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><h4>Sample</h4><p>128 samples @ 125kHz</p></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><h4>FFT</h4><p>64-point fixed-point</p></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><h4>Magnitude</h4><p>sqrt(real² + imag²)</p></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><h4>Band Split</h4><p>R / G / B bins</p></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><h4>LEDs</h4><p>3×4 RGB display</p></div>
+  </div>
+
+  <ul>
+    <li><strong>ADC sampling:</strong> The Arduino's built-in ADC runs at 125 kHz, collecting 128 samples per cycle — giving a total loop time of about 27ms (roughly 37 frames per second).</li>
+    <li><strong>Fixed-point FFT:</strong> Floating point is too slow on an Arduino. The FFT implementation uses 16-bit fixed-point integer arithmetic for speed, with a precomputed sine wave table stored in program memory.</li>
+    <li><strong>Three frequency bands:</strong> Bins 1–10 drive the red LEDs (bass), bins 11–20 drive green (mids), and bins 21–31 drive blue (highs). Each band has 4 LED levels.</li>
+    <li><strong>Smoothing &amp; AGC:</strong> A smoothing constant (0.95) prevents the LEDs from flickering too fast, and an Automatic Gain Control adjusts the display range to match the music's dynamic range in real time.</li>
+  </ul>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Fixed-point math is a critical skill for embedded systems. On an Arduino with no floating-point unit, a single float multiplication can take 10x longer than an integer one. The FFT runs fast enough for real-time audio only because everything is 16-bit fixed-point — trading precision for speed in a controlled way.</p>
+  </div>
+
+  <!-- ▼ LED display in action — replace with your image filename ▼ -->
+  <img class="project-image" src="fft-led-display.jpg" alt="FFT LED Music Analyzer — LED strip responding to music">
+
+  <!-- ================================================
+       CHAPTER 3: THE CODE
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">03</span> The Arduino Code</div>
+
+  <p>The implementation is a single Arduino sketch that handles ADC configuration, the FFT algorithm, magnitude calculation, band accumulation, smoothing, AGC, and LED output. The FFT core is adapted from open-source work by Tom Roberts, Malcolm Slaney, Dimitrios P. Bouras, and Anatoly Kuzmenko.</p>
+
+  <p>Key technical decisions in the code:</p>
+  <ul>
+    <li><strong>Direct ADC register manipulation</strong> (ADCSRA, ADMUX) instead of analogRead() — much faster sampling</li>
+    <li><strong>Precomputed sine table in PROGMEM</strong> — 768 values stored in flash instead of RAM, critical for the FFT butterfly operations</li>
+    <li><strong>DC bias removal</strong> — subtracting the midpoint voltage (2.5V = 32768 in ADC units) before FFT to eliminate the DC component</li>
+    <li><strong>Serial debug interface</strong> — commands 'x' (raw ADC data), 'f' (FFT spectrum), and '1'/'2'/'3' (AGC tuning) for live debugging</li>
+  </ul>
+
+  <div class="code-block">
+    <div class="code-block-header">
+      <span>fft_led_analyzer.ino</span>
+      <span>Arduino / C++</span>
+    </div>
+    <pre><span class="comment">// Key parameters:</span>
+<span class="keyword">#define</span> FFT_SIZE 64
+<span class="keyword">#define</span> N (2 * FFT_SIZE)  <span class="comment">// 128 samples total</span>
+
+<span class="comment">// Frequency band mapping:</span>
+<span class="comment">// Bins 1-10  → Red LEDs   (bass)</span>
+<span class="comment">// Bins 11-20 → Green LEDs (mids)</span>
+<span class="comment">// Bins 21-31 → Blue LEDs  (highs)</span>
+
+<span class="keyword">float</span> kdmp = 0.95;   <span class="comment">// Smoothing constant</span>
+<span class="keyword">float</span> kary = 0.999;  <span class="comment">// AGC time constant</span>
+
+<span class="comment">// LED pin assignments — 3 bands × 4 levels</span>
+<span class="keyword">int</span> ledPinsKr[] = { 2, 3, 4, 5 };   <span class="comment">// Red</span>
+<span class="keyword">int</span> ledPinsZl[] = { 6, 7, 8, 9 };   <span class="comment">// Green</span>
+<span class="keyword">int</span> ledPinsSn[] = { 10, 11, 12, 13 }; <span class="comment">// Blue</span>
+
+<span class="comment">// ADC runs at 125kHz via direct register config:</span>
+ADCSRA = 0x87;  <span class="comment">// ADC enable, prescaler = 128</span>
+ADMUX  = 0x60;  <span class="comment">// Left-adjust result</span>
+
+<span class="comment">// Full source: ~200 lines including FFT implementation,</span>
+<span class="comment">// sine table (PROGMEM), sampling, magnitude calculation,</span>
+<span class="comment">// band accumulation, smoothing, AGC, and LED output.</span></pre>
+  </div>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Direct register manipulation on the Arduino (ADCSRA, ADMUX) is intimidating at first, but it unlocks performance that analogRead() can't touch. Reading the ATmega328 datasheet and understanding the ADC hardware architecture was the key to getting the sampling speed needed for real-time audio.</p>
+  </div>
+
+  <!-- ================================================
+       CHAPTER 4: DEBUGGING
+       ================================================ -->
+  <div class="chapter"><span class="chapter-num">04</span> Debugging Real-Time Audio</div>
+
+  <p>Debugging a real-time audio system is uniquely challenging — you can't just add a breakpoint and step through because the signal is gone by the time you look at it. The serial debug interface was essential:</p>
+
+  <ul>
+    <li><strong>'x' command:</strong> Dumps the raw ADC samples — lets you verify the audio signal is actually reaching the Arduino and that the DC bias removal is working</li>
+    <li><strong>'f' command:</strong> Prints the FFT spectrum bins plus the accumulator values for each band and the AGC maximum — this is how I tuned the frequency band boundaries</li>
+    <li><strong>'1'/'2'/'3' commands:</strong> Adjust the AGC time constant on the fly — different music genres need different AGC speeds (fast for electronic, slow for classical)</li>
+  </ul>
+
+  <div class="lesson-box">
+    <div class="lesson-title">💡 Lesson Learned</div>
+    <p>Always build debugging tools into embedded systems from the start. The serial command interface added maybe 30 lines of code but saved hours of blind guessing. Being able to inspect raw ADC data, FFT output, and AGC state in real time turned debugging from impossible to straightforward.</p>
+  </div>
+
+  <!-- ================================================
+       CHAPTER 5: WHAT THIS DEMONSTRATES
+       ================================================ -->
+  <h2>Skills Demonstrated</h2>
+  <ul>
+    <li><strong>Embedded C/C++ programming:</strong> Arduino development with direct register manipulation, interrupt handling, and memory-constrained optimization</li>
+    <li><strong>Digital signal processing:</strong> Fixed-point FFT implementation, frequency domain analysis, and real-time audio processing</li>
+    <li><strong>Electronics integration:</strong> ADC configuration, LED multiplexing, and analog signal conditioning</li>
+    <li><strong>Algorithm optimization:</strong> Choosing fixed-point over floating-point, precomputed lookup tables, and minimizing loop overhead for real-time performance</li>
+    <li><strong>Debug methodology:</strong> Building serial inspection tools for real-time system debugging</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>The Bigger Picture:</strong> This project sits at the intersection of physics (signal decomposition), programming (embedded C), electronics (ADC, LEDs), and design (making something that responds to music in a way that feels right). It's the same systems-thinking that makes a good design engineer — understanding how all the pieces fit together, not just how one component works in isolation.</p>
+  </div>
+
+  <a href="index.html#projects" class="back-btn">← Back to All Projects</a>
+</div>
+
+<footer><p>&copy; 2026 Will W. — Design Engineer &amp; CAD Technician</p></footer>
+
+</body>
+</html>
